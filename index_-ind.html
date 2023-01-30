@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="css/estilo.css">
+
+
+
+  <title>Bootstrap</title>
+
+</head>
+
+<style>
+  .bg {
+    background-image: url(img/imgf5.jpg) ;
+    background-size: 40em 13em;
+  }
+
+  
+</style>
+
+
+
+<body class=" "  style="background-color:#c5d4e0;">
+
+  <div style="background-color:#40627e;">
+    <h1 class="display-4 font-weight-bold text-center p-1" >J<span class="text-white">O</span>K<span class="text-white">E</span>NP<span class="text-white">O</span></h1>
+  </div>
+
+  
+  <hr>
+  
+  
+  <div class="p-1">
+    
+    <div class="container mt-4 " >
+      <div class="row" >
+  
+        <!--tela de opc-->
+        <div class="col-4">
+          <div class="">
+            <div onclick="rodada('pedra')"     class=" rounded d-flex justify-content-center display bg-dark text-white display-4 font-weight" >
+              <i class="fas fa-gem fa-xs p-2"></i>
+            </div>
+            <div onclick="rodada('papel')"     class=" rounded mt-2 d-flex justify-content-center display bg-dark text-white display-4 font-weight" >
+              <i class="fas fa-paper-plane fa-xs p-2"></i>
+             </div>
+             <div onclick="rodada('tesoura')"  class=" rounded mt-2 d-flex justify-content-center display bg-dark text-white display-4 font-weight" >
+              <i class="fas fa-cut fa-xs p-2"></i>
+             </div>
+  
+          </div>
+        </div>
+        <!--tela de opc-->
+        
+        <!--tela de visualição-->
+        <div class="col-6 rounded bg " style=" background-color:rgb(214, 221, 200) ;">
+          <div class="d-flex justify-content-center text-white font-weight-bold ">
+           
+            <div id="resultado" class="display-4 mt-5 ">-------</div>
+          </div>
+         
+         
+        </div>
+        <!--tela de visualição-->
+        <div class="ml-2 font-weight-bold p-1" style="">
+          <p class="text-white rounded-top" style="background-color: rgb(56, 66, 62);">OPÇÃO DA MAQUINA</p>
+          <p id="opcM" class=" ">?</p>
+          <hr>
+          <p class="text-white rounded-top" style="background-color: rgb(56, 66, 62);">OPÇÃO DA JOGADOR</p>
+          <p id="opcJ" class=" ">?</p>
+          <hr>
+          
+        </div>
+        
+        
+  
+      </div>
+     
+     
+      
+      <hr>
+  
+      <div class="row  rounded" style="background-color:#40627e;">
+        <div class="col-4">
+          <h5 id="rodada">Rodada: </h5>
+        </div>
+        
+        <div class="col-3">
+          <h5 id="jogador">Suas vitorias: </h5>
+        </div>
+  
+        <div class="col-4">
+          <h5 id="maquina">vitorias da maquina: </h5>
+        </div>
+       
+      </div>
+    </div>
+  
+  </div>
+
+  <script>
+
+
+    var cont = 1
+    var vitoriaJ = 0
+    var maquina = 0
+
+    function rodada(escolha) {
+      
+      
+      
+      //LISTA COM AS OPÇÕES DA MAQUINA
+      var opcsM = ['pedra',
+                   'papel',
+                   'tesoura']
+      var random = Math.floor(Math.random() * opcsM.length)
+      var opcsMR = opcsM[random]
+      document.getElementById('opcM').innerHTML = 'JOGUEI: ' + opcsMR.toUpperCase()
+      //--------//
+
+      //escolha do jogador
+      document.getElementById('opcJ').innerHTML = 'JOGUEI: ' + escolha.toUpperCase()
+      //--------//
+      
+      
+      //acumulador de rodada
+      document.getElementById('rodada').innerHTML = 'Rodada: ' + cont + 'º'
+      cont = cont + 1
+      //--------//
+      
+      
+      
+      //Probabilidades 1/9
+      //PEDRA
+      if (escolha == 'pedra'){
+          if (escolha == 'pedra' && opcsMR == 'pedra' ) {
+          document.getElementById('resultado').innerHTML = 'empate'.toUpperCase()
+        
+        //JOGADOR  VENCE
+        } else if (escolha == 'pedra' && opcsMR == 'tesoura' ){
+          document.getElementById('resultado').innerHTML = 'pedra ganhou'.toUpperCase()
+          
+          //vitorias do jogador
+          vitoriaJ += 1
+          document.getElementById('jogador').innerHTML = 'Suas vitorias: ' + vitoriaJ
+          //--------//
+
+        //MAQUINA  VENCE
+        } else if (escolha == 'pedra' && opcsMR == 'papel' ){
+          document.getElementById('resultado').innerHTML = 'papel ganhou'.toUpperCase()
+          
+          //vitorias do jogador
+          maquina += 1
+          document.getElementById('maquina').innerHTML = 'vitorias da maquina: ' + maquina
+          //--------//
+        }
+
+      //PAPEL
+      } else if (escolha == 'papel') {
+        if (escolha == 'papel' && opcsMR == 'papel' ) {
+          document.getElementById('resultado').innerHTML = 'empate'.toUpperCase()
+        
+          
+        //JOGADOR1  VENCE
+        } else if (escolha == 'papel' && opcsMR == 'pedra' ){
+          document.getElementById('resultado').innerHTML = 'papel ganhou'.toUpperCase()
+
+            //vitorias do jogador
+            vitoriaJ += 1
+            document.getElementById('jogador').innerHTML = 'Suas vitorias: ' + vitoriaJ
+            //--------//
+          
+          
+        //MAQUINA  VENCE
+        } else if (escolha == 'papel' && opcsMR == 'tesoura' ){
+          document.getElementById('resultado').innerHTML = 'tesoura ganhou'.toUpperCase()
+          
+            //vitorias da Maquina
+            maquina += 1
+            document.getElementById('maquina').innerHTML = 'vitorias da maquina: ' + maquina
+            //--------//
+        }
+      
+      //TESOURA
+      } else {
+        if (escolha == 'tesoura' && opcsMR == 'tesoura' ) {
+          document.getElementById('resultado').innerHTML = 'empate'.toUpperCase()
+          
+        //MAQUINA  VENCE
+        } else if (escolha == 'tesoura' && opcsMR == 'pedra' ){
+          document.getElementById('resultado').innerHTML = 'pedra ganhou'.toUpperCase()
+
+              //vitorias do maquina
+              maquina += 1
+              document.getElementById('jogador').innerHTML = 'Suas vitorias: ' + maquina
+              //--------//
+          
+          //PLAYER-1  VENCE
+        } else if (escolha == 'tesoura' && opcsMR == 'papel' ){
+          document.getElementById('resultado').innerHTML = 'tesoura ganhou'.toUpperCase()
+
+              //vitorias do jogador
+              vitoriaJ += 1
+              document.getElementById('maquina').innerHTML = 'vitorias da maquina: ' + vitoriaJ
+              //--------//
+          
+        }
+
+
+      }
+     
+      
+    }
+    
+  </script>
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
